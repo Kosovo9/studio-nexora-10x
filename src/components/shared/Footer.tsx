@@ -41,50 +41,38 @@ export default function Footer() {
   const t = translations[lang]
 
   return (
-    <footer className="bg-gray-900 text-gray-300 mt-auto">
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-          <div>
-            <h3 className="text-white font-bold text-lg mb-4">{t.about}</h3>
-            <p className="text-sm">
-              Studio Nexora - Fotos profesionales con inteligencia artificial. 
-              Transforma tus fotos en obras de arte.
+    <footer className="bg-gray-900 text-white py-12 mt-auto">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="md:col-span-2">
+            <h3 className="text-2xl font-bold mb-4">Studio Nexora</h3>
+            <p className="text-gray-300 text-sm leading-relaxed mb-4">
+              Studio Nexora genera imágenes usando IA. El cliente conserva todos los derechos sobre sus imágenes. 
+              Tus fotos se procesan de forma segura y se eliminan después de 30 días. Al usar nuestro servicio 
+              aceptas nuestros términos y condiciones.
+            </p>
+            <p className="text-gray-300 text-sm">
+              Studio Nexora generates images using AI. Client retains all rights to their images. 
+              Your photos are processed securely and deleted after 30 days. By using our service 
+              you accept our terms and conditions.
             </p>
           </div>
-
+          
           <div>
-            <h3 className="text-white font-bold text-lg mb-4">{t.services}</h3>
-            <ul className="space-y-2 text-sm">
-              <li><a href="/crear" className="hover:text-white transition-colors">Crear Fotos</a></li>
-              <li><a href="/dashboard" className="hover:text-white transition-colors">Mi Dashboard</a></li>
-              <li><a href="/affiliados" className="hover:text-white transition-colors">Programa Afiliados</a></li>
+            <h4 className="font-semibold mb-4">Enlaces Rápidos</h4>
+            <ul className="space-y-2 text-sm text-gray-300">
+              <li><a href="/" className="hover:text-white transition-colors">Inicio</a></li>
+              <li><a href="/affiliados" className="hover:text-white transition-colors">Afiliados</a></li>
               <li><a href="/referidos" className="hover:text-white transition-colors">Recomendaciones</a></li>
+              <li><a href="/dashboard" className="hover:text-white transition-colors">Dashboard</a></li>
             </ul>
           </div>
-
+          
           <div>
-            <h3 className="text-white font-bold text-lg mb-4">{t.legal}</h3>
-            <ul className="space-y-2 text-sm">
-              <li><a href="/privacidad" className="hover:text-white transition-colors">{t.privacy}</a></li>
-              <li><a href="/terminos" className="hover:text-white transition-colors">{t.terms}</a></li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-white font-bold text-lg mb-4">{t.contact}</h3>
-            <ul className="space-y-2 text-sm">
-              <li className="flex items-center gap-2">
-                <Mail className="w-4 h-4" />
-                <a href="mailto:support@studionexora.com" className="hover:text-white transition-colors">
-                  support@studionexora.com
-                </a>
-              </li>
-              <li className="flex items-center gap-2">
-                <Phone className="w-4 h-4" />
-                <a href="https://wa.me/521234567890" className="hover:text-white transition-colors">
-                  WhatsApp
-                </a>
-              </li>
+            <h4 className="font-semibold mb-4">Legal</h4>
+            <ul className="space-y-2 text-sm text-gray-300">
+              <li><a href="/terminos" className="hover:text-white transition-colors">Términos de Servicio</a></li>
+              <li><a href="/privacidad" className="hover:text-white transition-colors">Política de Privacidad</a></li>
             </ul>
             <div className="mt-4">
               <label className="block text-sm mb-2">{t.language}</label>
@@ -113,19 +101,11 @@ export default function Footer() {
             </div>
           </div>
         </div>
-
-        {/* Disclaimer Legal */}
-        <div className="border-t border-gray-800 pt-8">
-          <p className="text-xs text-gray-500 mb-4 leading-relaxed">
-            {t.disclaimer}
+        
+        <div className="border-t border-gray-800 mt-8 pt-8 text-center">
+          <p className="text-gray-400 text-sm">
+            © {new Date().getFullYear()} Studio Nexora. Todos los derechos reservados. | All rights reserved.
           </p>
-          <div className="flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
-            <p>© {new Date().getFullYear()} Studio Nexora. {t.rights}</p>
-            <div className="flex items-center gap-2 mt-2 md:mt-0">
-              <Globe className="w-4 h-4" />
-              <span>studio-nexora.com</span>
-            </div>
-          </div>
         </div>
       </div>
     </footer>
