@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import Footer from '@/components/shared/Footer'
+import { NotificationSystem } from '@/components/notifications/NotificationSystem'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -124,6 +125,7 @@ function ClerkProviderFallback({ children }: { children: React.ReactNode }) {
               </main>
               <Footer />
             </div>
+            <NotificationSystem />
           </body>
         </html>
       </ClerkProvider>
