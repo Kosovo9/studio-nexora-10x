@@ -1,36 +1,100 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Studio Nexora 10x 🚀
 
-## Getting Started
+Proyecto base sólido y limpio para Studio Nexora - Fotos Profesionales con IA
 
-First, run the development server:
+## 🎯 Características
+
+- ✅ Next.js 16 con App Router
+- ✅ TypeScript configurado estrictamente
+- ✅ Tailwind CSS para estilos
+- ✅ Clerk para autenticación
+- ✅ Supabase para base de datos
+- ✅ Stripe para pagos
+- ✅ Three.js para componentes 3D
+- ✅ Build limpio sin errores
+
+## 🚀 Inicio Rápido
 
 ```bash
+# Instalar dependencias
+npm install
+
+# Desarrollo
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Build de producción
+npm run build
+
+# Iniciar producción
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📁 Estructura del Proyecto
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+studio-nexora-10x/
+├── src/
+│   ├── app/              # App Router
+│   │   ├── (auth)/       # Rutas de autenticación
+│   │   ├── (main)/       # Rutas principales
+│   │   ├── (admin)/      # Panel administración
+│   │   └── api/          # API routes
+│   ├── components/
+│   │   ├── ui/           # Componentes base
+│   │   └── shared/       # Componentes compartidos
+│   ├── lib/              # Configuraciones y utilidades
+│   └── types/            # Tipos TypeScript
+└── public/               # Archivos estáticos
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🔧 Configuración
 
-## Learn More
+### Variables de Entorno
 
-To learn more about Next.js, take a look at the following resources:
+Crea un archivo `.env.local` con:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```env
+# Clerk
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=...
+CLERK_SECRET_KEY=...
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Supabase
+NEXT_PUBLIC_SUPABASE_URL=...
+NEXT_PUBLIC_SUPABASE_ANON_KEY=...
 
-## Deploy on Vercel
+# Stripe
+STRIPE_SECRET_KEY=...
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=...
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# Google AI
+NEXT_PUBLIC_GOOGLE_AI_API_KEY=...
+GOOGLE_AI_API_KEY=...
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📦 Dependencias Principales
+
+- `next`: 16.0.1
+- `react`: 19.2.0
+- `@clerk/nextjs`: ^6.34.5
+- `@supabase/supabase-js`: ^2.80.0
+- `stripe`: ^19.3.0
+- `three`: ^0.181.1
+- `tailwindcss`: ^4
+
+## 🚀 Deployment
+
+### Vercel
+
+1. Conecta el repositorio a Vercel
+2. Configura las variables de entorno
+3. Deploy automático en cada push
+
+### Requisitos
+
+- Node.js >= 22.0.0
+
+## 📝 Notas
+
+- Proyecto base limpio sin errores de compilación
+- Arquitectura escalable y mantenible
+- Listo para desarrollo continuo
