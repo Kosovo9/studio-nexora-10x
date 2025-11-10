@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  serverExternalPackages: ['@supabase/supabase-js', 'sharp'],
+  serverExternalPackages: ['@supabase/supabase-js', 'sharp', 'three'],
   images: {
     remotePatterns: [
       {
@@ -20,11 +20,21 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: '**.clerk.dev',
       },
+      {
+        protocol: 'https',
+        hostname: 'eoimages.gsfc.nasa.gov',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.solarsystemscope.com',
+      },
     ],
   },
   typescript: {
     ignoreBuildErrors: false,
   },
+  // Configuración para Turbopack (Next.js 16)
+  turbopack: {},
 };
 
 export default nextConfig;

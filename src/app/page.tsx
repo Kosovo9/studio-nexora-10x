@@ -1,17 +1,40 @@
+'use client'
+
+import dynamic from 'next/dynamic'
+
+// Cargar EarthViewer con fallback
+const EarthViewer = dynamic(() => import('@/components/shared/EarthViewer'), {
+  ssr: false,
+  loading: () => (
+    <div className="h-screen bg-black flex items-center justify-center">
+      <div className="text-white text-center">
+        <div className="text-6xl mb-4">🌍</div>
+        <h1 className="text-4xl font-bold mb-2">Studio Nexora</h1>
+        <p className="text-xl opacity-90">Cargando experiencia espacial...</p>
+      </div>
+    </div>
+  )
+})
+
 export default function Home() {
   return (
-    <div className="min-h-screen bg-black text-white flex items-center justify-center">
-      <div className="text-center px-4">
-        <h1 className="text-6xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+    <div className="relative h-screen overflow-hidden">
+      <EarthViewer 
+        width="100vw"
+        height="100vh"
+        autoRotate={true}
+        showSatellite={true}
+        language="es"
+      />
+      <div className="absolute bottom-10 right-10 text-white text-right z-10">
+        <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
           Studio Nexora
         </h1>
-        <p className="text-xl mb-8 opacity-90">
-          Fotos profesionales con IA - Próximamente
-        </p>
-        <button className="bg-blue-600 hover:bg-blue-700 px-8 py-4 rounded-lg text-xl font-semibold transition-colors shadow-lg">
-          🚀 Coming Soon
+        <p className="text-xl opacity-90 mb-4">Fotos profesionales con IA</p>
+        <button className="mt-4 bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg font-semibold transition-colors shadow-lg">
+          Crear Mi Sesión 🚀
         </button>
       </div>
     </div>
-  );
+  )
 }
