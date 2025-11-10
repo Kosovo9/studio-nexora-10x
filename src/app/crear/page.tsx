@@ -100,6 +100,7 @@ export default function CrearPage() {
               <PaymentGateway
                 selectedVariant={selectedVariant}
                 photoCount={photos.length}
+                packageType="individual"
                 onPaymentSuccess={handlePaymentSuccess}
               />
               <div className="mt-6 text-center">
