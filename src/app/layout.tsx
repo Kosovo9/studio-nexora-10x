@@ -9,8 +9,8 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   metadataBase: new URL('https://studio-nexora.com'),
   title: 'Studio Nexora - Fotos Profesionales con IA | Transforma Selfies en Fotos de Estudio',
-  description: 'Transforma tus selfies en fotos de estudio profesionales con IA. 100% fidelidad, 2 variantes, descarga inmediata. Precios desde $200 MXN.',
-  keywords: 'fotos profesionales, IA, fotos de estudio, selfies, México, precios accesibles',
+  description: 'Transforma tus selfies en fotos de estudio profesionales con IA. 100% fidelidad, 2 variantes, descarga inmediata. Precios desde $100 MXN.',
+  keywords: 'fotos profesionales, IA, fotos de estudio, selfies, México, $100 pesos',
   authors: [{ name: 'Studio Nexora' }],
   creator: 'Studio Nexora',
   publisher: 'Studio Nexora',

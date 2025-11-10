@@ -11,15 +11,9 @@ interface PaymentGatewayProps {
 
 const PRICING = {
   individual: {
-    1: 200,
-    2: 350,
-    3: 500
-  },
-  mascotas: 250,
-  familia: {
-    '2-3': 1000,
-    '4-5': 1500,
-    '6+': 2000
+    1: 100,   // 100 MXN por 1 foto
+    2: 350,   // 350 MXN por 2 fotos
+    3: 500    // 500 MXN por 3 fotos
   }
 }
 
@@ -28,7 +22,7 @@ export default function PaymentGateway({ selectedVariant, photoCount, onPaymentS
   const [selectedMethod, setSelectedMethod] = useState<'stripe' | 'lemon'>('stripe')
 
   const calculateTotal = () => {
-    const basePrice = PRICING.individual[photoCount as keyof typeof PRICING.individual] || 200
+    const basePrice = PRICING.individual[photoCount as keyof typeof PRICING.individual] || 100
     return selectedVariant === 'both' ? Math.round(basePrice * 1.4) : basePrice
   }
 
@@ -61,8 +55,8 @@ export default function PaymentGateway({ selectedVariant, photoCount, onPaymentS
   }
 
   const total = calculateTotal()
-  const basePrice = PRICING.individual[photoCount as keyof typeof PRICING.individual] || 200
-  const discount = selectedVariant === 'both' ? Math.round(basePrice * 0.3) : 0
+  const basePrice = PRICING.individual[photoCount as keyof typeof PRICING.individual] || 100
+  const discount = selectedVariant === 'both' ? '30%' : '0%'
 
   return (
     <div className="max-w-2xl mx-auto">
@@ -88,10 +82,10 @@ export default function PaymentGateway({ selectedVariant, photoCount, onPaymentS
               <span className="text-gray-600 dark:text-gray-400">Precio base:</span>
               <span className="font-medium">${basePrice} MXN</span>
             </div>
-            {discount > 0 && (
+            {discount !== '0%' && (
               <div className="flex justify-between text-green-600 dark:text-green-400">
-                <span>Descuento (30%):</span>
-                <span>-${discount} MXN</span>
+                <span>Descuento:</span>
+                <span>{discount}</span>
               </div>
             )}
             <div className="border-t pt-2 mt-2">
