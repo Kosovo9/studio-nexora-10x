@@ -53,6 +53,32 @@ export const metadata: Metadata = {
   },
 }
 
+// Schema.org JSON-LD para SEO
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'Studio Nexora',
+  description: 'Servicio de fotos profesionales generadas con inteligencia artificial',
+  url: 'https://studio-nexora.com',
+  telephone: '+52-XXX-XXX-XXXX',
+  address: {
+    '@type': 'PostalAddress',
+    addressCountry: 'MX',
+  },
+  priceRange: '$$',
+  serviceType: 'Fotografía Profesional con IA',
+  areaServed: {
+    '@type': 'Country',
+    name: 'México',
+  },
+  offers: {
+    '@type': 'Offer',
+    price: '200',
+    priceCurrency: 'MXN',
+    availability: 'https://schema.org/InStock',
+  },
+})
+
 function ClerkProviderFallback({ children }: { children: React.ReactNode }) {
   // Si no hay clave de Clerk, usar modo demo
   if (!process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY) {
@@ -73,6 +99,12 @@ function ClerkProviderFallback({ children }: { children: React.ReactNode }) {
     return (
       <ClerkProvider>
         <html lang="es">
+          <head>
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: jsonLd }}
+            />
+          </head>
           <body className={inter.className}>
             <div className="min-h-screen bg-black flex flex-col">
               <main className="flex-1">

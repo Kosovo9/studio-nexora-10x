@@ -1,14 +1,12 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Package, Download, Phone, Mail, Clock, CheckCircle, XCircle } from 'lucide-react'
+import { Download, Calendar, Star, Settings, Package, Users, DollarSign } from 'lucide-react'
 import { getOrders, type Order } from '@/lib/orders'
-import PreviewGenerator from '@/components/shared/PreviewGenerator'
 
 export default function ClientDashboard() {
   const [orders, setOrders] = useState<Order[]>([])
-  const [selectedOrder, setSelectedOrder] = useState<string | null>(null)
-  const [viewingPreviews, setViewingPreviews] = useState(false)
+  const [activeTab, setActiveTab] = useState<'orders' | 'downloads' | 'referrals'>('orders')
 
   useEffect(() => {
     loadOrders()
@@ -21,222 +19,234 @@ export default function ClientDashboard() {
     ))
   }
 
-  const getStatusIcon = (status: Order['status']) => {
-    switch (status) {
-      case 'completado':
-        return <CheckCircle className="w-5 h-5 text-green-400" />
-      case 'pagado':
-        return <Clock className="w-5 h-5 text-blue-400" />
-      default:
-        return <XCircle className="w-5 h-5 text-yellow-400" />
-    }
-  }
+  const [downloadHistory, setDownloadHistory] = useState<any[]>([])
 
-  const getStatusLabel = (status: Order['status']) => {
-    const labels: Record<Order['status'], string> = {
-      pendiente: 'Pendiente',
-      pagado: 'En Proceso',
-      completado: 'Completado',
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const history = JSON.parse(localStorage.getItem('downloadHistory') || '[]')
+      setDownloadHistory(history)
     }
-    return labels[status]
-  }
+  }, [])
 
-  const handleReorder = (order: Order) => {
-    // Crear nueva orden basada en la anterior
-    const newOrder = {
-      name: order.name,
-      whatsapp: order.whatsapp,
-      email: order.email,
-      package: order.package,
-    }
-    
-    // Esto debería usar createOrder, pero por simplicidad aquí
-    alert(`Reordenando paquete ${order.package}...`)
-    window.location.href = '/'
-  }
-
-  if (viewingPreviews && selectedOrder) {
-    return (
-      <div className="min-h-screen bg-gray-900 text-white p-4">
-        <div className="max-w-4xl mx-auto">
-          <button
-            onClick={() => {
-              setViewingPreviews(false)
-              setSelectedOrder(null)
-            }}
-            className="mb-6 text-blue-400 hover:text-blue-300"
-          >
-            ← Volver al Dashboard
-          </button>
-          <PreviewGenerator 
-            orderId={selectedOrder}
-            onComplete={() => {
-              setViewingPreviews(false)
-              setSelectedOrder(null)
-              loadOrders()
-            }}
-          />
-        </div>
-      </div>
-    )
+  const stats = {
+    totalOrders: orders.length,
+    totalSpent: orders.reduce((sum, order) => sum + order.price, 0),
+    downloads: downloadHistory.length,
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white p-4 md:p-8">
-      <div className="max-w-6xl mx-auto">
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold mb-2">Mi Dashboard</h1>
-          <p className="text-gray-400">Gestiona tus órdenes y descarga tus fotos</p>
-        </div>
-
-        {/* Stats Rápidas */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-          <div className="bg-gray-800 rounded-lg p-4">
-            <div className="flex items-center justify-between mb-2">
-              <Package className="w-8 h-8 text-blue-400" />
-              <span className="text-2xl font-bold">{orders.length}</span>
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+      {/* Header */}
+      <div className="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-6">
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Mi Dashboard</h1>
+              <p className="text-gray-600 dark:text-gray-400">Gestiona tus fotos y pedidos</p>
             </div>
-            <p className="text-gray-400 text-sm">Total Órdenes</p>
-          </div>
-
-          <div className="bg-gray-800 rounded-lg p-4">
-            <div className="flex items-center justify-between mb-2">
-              <CheckCircle className="w-8 h-8 text-green-400" />
-              <span className="text-2xl font-bold">
-                {orders.filter(o => o.status === 'completado').length}
-              </span>
-            </div>
-            <p className="text-gray-400 text-sm">Completadas</p>
-          </div>
-
-          <div className="bg-gray-800 rounded-lg p-4">
-            <div className="flex items-center justify-between mb-2">
-              <Clock className="w-8 h-8 text-yellow-400" />
-              <span className="text-2xl font-bold">
-                {orders.filter(o => o.status === 'pagado' || o.status === 'pendiente').length}
-              </span>
-            </div>
-            <p className="text-gray-400 text-sm">En Proceso</p>
+            <a
+              href="/crear"
+              className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors"
+            >
+              Nueva Sesión
+            </a>
           </div>
         </div>
+      </div>
 
-        {/* Mis Órdenes */}
-        <div className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Mis Órdenes</h2>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Stats */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm">
+            <div className="flex items-center gap-3">
+              <Calendar className="h-8 w-8 text-blue-500" />
+              <div>
+                <p className="text-2xl font-bold text-gray-900 dark:text-white">{stats.totalOrders}</p>
+                <p className="text-gray-600 dark:text-gray-400">Órdenes totales</p>
+              </div>
+            </div>
+          </div>
           
-          {orders.length === 0 ? (
-            <div className="bg-gray-800 rounded-lg p-12 text-center">
-              <Package className="w-16 h-16 mx-auto mb-4 text-gray-600" />
-              <p className="text-gray-400 mb-4">No tienes órdenes aún</p>
-              <a
-                href="/"
-                className="inline-block bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg font-semibold"
-              >
-                Crear Mi Primera Orden
-              </a>
-            </div>
-          ) : (
-            <div className="space-y-4">
-              {orders.map((order) => (
-                <div
-                  key={order.id}
-                  className="bg-gray-800 rounded-lg p-6 border border-gray-700"
-                >
-                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-2">
-                        {getStatusIcon(order.status)}
-                        <h3 className="text-xl font-bold">{order.package}</h3>
-                        <span className={`px-3 py-1 rounded text-sm ${
-                          order.status === 'completado' ? 'bg-green-500/20 text-green-400' :
-                          order.status === 'pagado' ? 'bg-blue-500/20 text-blue-400' :
-                          'bg-yellow-500/20 text-yellow-400'
-                        }`}>
-                          {getStatusLabel(order.status)}
-                        </span>
-                      </div>
-                      <p className="text-gray-400 text-sm mb-2">
-                        Orden #{order.id.slice(-8)} • ${order.price}
-                      </p>
-                      <p className="text-gray-500 text-xs">
-                        {new Date(order.date).toLocaleDateString('es-MX', {
-                          year: 'numeric',
-                          month: 'long',
-                          day: 'numeric',
-                        })}
-                      </p>
-                    </div>
-
-                    <div className="flex flex-col sm:flex-row gap-2">
-                      {order.status === 'pagado' && (
-                        <button
-                          onClick={() => {
-                            setSelectedOrder(order.id)
-                            setViewingPreviews(true)
-                          }}
-                          className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg font-semibold text-sm flex items-center justify-center gap-2"
-                        >
-                          Ver Previews
-                        </button>
-                      )}
-                      {order.status === 'completado' && (
-                        <button
-                          className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded-lg font-semibold text-sm flex items-center justify-center gap-2"
-                        >
-                          <Download className="w-4 h-4" />
-                          Descargar
-                        </button>
-                      )}
-                      <button
-                        onClick={() => handleReorder(order)}
-                        className="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg font-semibold text-sm"
-                      >
-                        Reordenar
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-
-        {/* Galería de Fotos Entregadas */}
-        {orders.filter(o => o.status === 'completado').length > 0 && (
-          <div className="mb-8">
-            <h2 className="text-2xl font-bold mb-4">Fotos Entregadas</h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {[1, 2, 3, 4].map((i) => (
-                <div
-                  key={i}
-                  className="aspect-square bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center"
-                >
-                  <Download className="w-8 h-8 text-white opacity-50" />
-                </div>
-              ))}
+          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm">
+            <div className="flex items-center gap-3">
+              <Download className="h-8 w-8 text-green-500" />
+              <div>
+                <p className="text-2xl font-bold text-gray-900 dark:text-white">{stats.downloads}</p>
+                <p className="text-gray-600 dark:text-gray-400">Descargas</p>
+              </div>
             </div>
           </div>
-        )}
+          
+          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm">
+            <div className="flex items-center gap-3">
+              <Star className="h-8 w-8 text-purple-500" />
+              <div>
+                <p className="text-2xl font-bold text-gray-900 dark:text-white">${stats.totalSpent}</p>
+                <p className="text-gray-600 dark:text-gray-400">Total invertido</p>
+              </div>
+            </div>
+          </div>
+        </div>
 
-        {/* Soporte y Contacto */}
-        <div className="bg-gray-800 rounded-lg p-6">
-          <h2 className="text-2xl font-bold mb-4">¿Necesitas Ayuda?</h2>
-          <div className="flex flex-col sm:flex-row gap-4">
+        {/* Tabs */}
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-6">
+          <div className="border-b border-gray-200 dark:border-gray-700">
+            <nav className="flex -mb-px">
+              {[
+                { id: 'orders', name: 'Mis Órdenes', count: orders.length, icon: Package },
+                { id: 'downloads', name: 'Descargas', count: stats.downloads, icon: Download },
+                { id: 'referrals', name: 'Recomendaciones', count: 0, icon: Users },
+              ].map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id as any)}
+                  className={`
+                    py-4 px-6 text-center border-b-2 font-medium text-sm flex items-center gap-2
+                    ${activeTab === tab.id
+                      ? 'border-blue-500 text-blue-600 dark:text-blue-400'
+                      : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
+                    }
+                  `}
+                >
+                  <tab.icon className="h-4 w-4" />
+                  {tab.name}
+                  {tab.count > 0 && (
+                    <span className="ml-2 bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white py-0.5 px-2 rounded-full text-xs">
+                      {tab.count}
+                    </span>
+                  )}
+                </button>
+              ))}
+            </nav>
+          </div>
+
+          {/* Tab Content */}
+          <div className="p-6">
+            {activeTab === 'orders' && (
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Historial de Órdenes</h3>
+                {orders.length === 0 ? (
+                  <div className="text-center py-12">
+                    <Package className="h-16 w-16 text-gray-400 mx-auto mb-4" />
+                    <p className="text-gray-500 dark:text-gray-400 mb-4">Aún no tienes órdenes</p>
+                    <a
+                      href="/crear"
+                      className="inline-block bg-blue-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-600 transition-colors"
+                    >
+                      Crear Mi Primera Orden
+                    </a>
+                  </div>
+                ) : (
+                  orders.map((order) => (
+                    <div key={order.id} className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 hover:shadow-md transition-shadow">
+                      <div className="flex justify-between items-center">
+                        <div>
+                          <p className="font-semibold text-gray-900 dark:text-white">Orden #{order.id.slice(-8)}</p>
+                          <p className="text-sm text-gray-600 dark:text-gray-400">
+                            {order.package} • ${order.price} MXN
+                          </p>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-sm text-gray-600 dark:text-gray-400">
+                            {new Date(order.date).toLocaleDateString()}
+                          </p>
+                          <span className={`
+                            inline-block text-xs px-2 py-1 rounded mt-1
+                            ${order.status === 'completado' 
+                              ? 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400' 
+                              : order.status === 'pagado'
+                              ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-400'
+                              : 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400'
+                            }
+                          `}>
+                            {order.status === 'completado' ? 'Completado' : 
+                             order.status === 'pagado' ? 'En Proceso' : 'Pendiente'}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  ))
+                )}
+              </div>
+            )}
+
+            {activeTab === 'downloads' && (
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Mis Descargas</h3>
+                {stats.downloads === 0 ? (
+                  <div className="text-center py-12">
+                    <Download className="h-16 w-16 text-gray-400 mx-auto mb-4" />
+                    <p className="text-gray-500 dark:text-gray-400">Aún no has descargado fotos</p>
+                  </div>
+                ) : (
+                  <div className="space-y-3">
+                    {downloadHistory.slice(0, 10).map((download: any, idx: number) => (
+                      <div key={idx} className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+                        <div>
+                          <p className="font-semibold text-gray-900 dark:text-white">
+                            Variante {download.variant} - Orden #{download.orderId.slice(-8)}
+                          </p>
+                          <p className="text-sm text-gray-600 dark:text-gray-400">
+                            {new Date(download.timestamp).toLocaleString()}
+                          </p>
+                        </div>
+                        <Download className="h-5 w-5 text-green-500" />
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {activeTab === 'referrals' && (
+              <div className="text-center py-12">
+                <Star className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Programa de Recomendaciones</h3>
+                <p className="text-gray-600 dark:text-gray-400 mb-4 max-w-md mx-auto">
+                  Recomienda Studio Nexora y gana 15% de descuento en tu próxima sesión
+                </p>
+                <a
+                  href="/referidos"
+                  className="inline-block bg-orange-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-600 transition-colors"
+                >
+                  Comenzar a Recomendar
+                </a>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Quick Actions */}
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Acciones Rápidas</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <a
+              href="/crear"
+              className="p-4 border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-lg text-center hover:border-blue-500 dark:hover:border-blue-500 transition-colors"
+            >
+              <div className="text-2xl mb-2">📸</div>
+              <p className="font-semibold text-gray-900 dark:text-white">Nueva Sesión</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400">Crear fotos nuevas</p>
+            </a>
+            
+            <a
+              href="/affiliados"
+              className="p-4 border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-lg text-center hover:border-purple-500 dark:hover:border-purple-500 transition-colors"
+            >
+              <div className="text-2xl mb-2">🤝</div>
+              <p className="font-semibold text-gray-900 dark:text-white">Programa Afiliados</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400">Gana 40% de comisión</p>
+            </a>
+            
             <a
               href="https://wa.me/521234567890"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-green-600 hover:bg-green-700 px-6 py-3 rounded-lg font-semibold"
+              className="p-4 border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-lg text-center hover:border-green-500 dark:hover:border-green-500 transition-colors"
             >
-              <Phone className="w-5 h-5" />
-              WhatsApp
-            </a>
-            <a
-              href="mailto:support@studionexora.com"
-              className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg font-semibold"
-            >
-              <Mail className="w-5 h-5" />
-              Email
+              <div className="text-2xl mb-2">💬</div>
+              <p className="font-semibold text-gray-900 dark:text-white">Soporte</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400">¿Necesitas ayuda?</p>
             </a>
           </div>
         </div>
@@ -244,4 +254,3 @@ export default function ClientDashboard() {
     </div>
   )
 }
-
