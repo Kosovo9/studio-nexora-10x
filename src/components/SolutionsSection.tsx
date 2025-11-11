@@ -32,11 +32,11 @@ export default function SolutionsSection() {
         </h3>
         
         <p 
-          className={`text-gray-400 mb-10 text-base sm:text-lg transition-all duration-700 delay-300 ${
+          className={`text-white mb-10 text-base sm:text-lg transition-all duration-700 delay-300 ${
             inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          Lista para llevar tu negocio al siguiente nivel
+          Libre para llevar tu negocio al siguiente nivel
         </p>
 
         <a 

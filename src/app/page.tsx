@@ -1,6 +1,5 @@
 import Header from '@/components/Header'
 import HeroStats from '@/components/HeroStats'
-import ChatTestimonials from '@/components/ChatTestimonials'
 import SolutionsSection from '@/components/SolutionsSection'
 import ContactForm from '@/components/ContactForm'
 
@@ -23,7 +22,6 @@ export default function Home() {
       
       <Header />
       <HeroStats />
-      <ChatTestimonials />
       <SolutionsSection />
       <ContactForm />
     </main>

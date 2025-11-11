@@ -26,8 +26,8 @@ export default function HeroStats() {
           <span className="text-[#f0b90b]">PLATFORM</span>
         </h1>
         
-        <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-16 max-w-2xl mx-auto">
-          Para impulsar tu negocio al siguiente nivel
+        <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-12 max-w-2xl mx-auto">
+          AI para impulsar tu negocio al siguiente nivel
         </p>
 
         {/* Stats Container */}
@@ -55,7 +55,7 @@ export default function HeroStats() {
 
           {/* Chat Simulation */}
           <div 
-            className={`bg-[#3a4a9f]/50 backdrop-blur-md border border-[#f0b90b]/30 rounded-2xl p-6 max-w-md w-full transition-all duration-700 delay-600 hover:border-[#f0b90b] hover:shadow-xl ${
+            className={`bg-[#3a4a9f]/50 backdrop-blur-md border border-[#f0b90b] rounded-2xl p-6 max-w-md w-full transition-all duration-700 delay-600 hover:border-[#ffd700] hover:shadow-xl ${
               inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
@@ -77,7 +77,7 @@ export default function HeroStats() {
             <div className="bg-gradient-to-br from-[#4a5ac7] to-[#3a4a9f] rounded-2xl p-4 relative shadow-lg">
               <div className="absolute -top-2 left-6 w-4 h-4 bg-[#4a5ac7] transform rotate-45"></div>
               <p className="text-white text-sm leading-relaxed">
-                Hola, ¿cómo puedo ayudarte con la gestión de tu negocio?
+                Hola, ¿cómo puedo ayudarte con soluciones personalizadas para el crecimiento de tu negocio?
               </p>
             </div>
           </div>
