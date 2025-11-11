@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nexora AI Platform - Impulsa tu negocio al siguiente nivel con inteligencia artificial">
+    <title>Nexora AI Platform | Neutral CI</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header" role="banner">
+        <div class="header-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <span>N</span>
+                </div>
+                <span class="logo-text">neutral ci</span>
+            </div>
+            <nav class="main-nav" role="navigation">
+                <a href="#contacto" class="demo-button">Programar un demo</a>
+                <button class="hamburger-menu" id="hamburger-menu" aria-label="Abrir menú" aria-expanded="false" type="button">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav" id="mobile-nav" role="dialog" aria-modal="true" aria-labelledby="mobile-nav-title">
+        <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+        <div class="mobile-nav-panel">
+            <div class="mobile-nav-header">
+                <h2 id="mobile-nav-title" class="sr-only">Menú de navegación</h2>
+                <button class="close-button" id="close-button" aria-label="Cerrar menú" type="button">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="mobile-nav-content">
+                <a href="#soluciones" class="mobile-nav-link">Soluciones</a>
+                <a href="#precios" class="mobile-nav-link">Precios</a>
+                <a href="#nosotros" class="mobile-nav-link">Nosotros</a>
+                <a href="#contacto" class="demo-button-mobile">Programar un demo</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main role="main">
+        <!-- Hero Section -->
+        <section class="hero-section" id="hero">
+            <div class="hero-background"></div>
+            <div class="hero-content">
+                <h1 class="animate-on-scroll">NEXORA AI PLATFORM</h1>
+                <p class="hero-subtitle animate-on-scroll delay-1">Para impulsar tu negocio al siguiente nivel</p>
+                
+                <div class="stats-and-chat animate-on-scroll delay-2">
+                    <div class="stats-container">
+                        <div class="stat-box animate-on-scroll delay-3">
+                            <h2>500k+</h2>
+                            <p>Clientes Satisfechos</p>
+                        </div>
+                        <div class="stat-box animate-on-scroll delay-4">
+                            <h2>8+ Años</h2>
+                            <p>De experiencia con proyectos</p>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-simulation animate-on-scroll delay-5">
+                        <div class="chat-header">
+                            <div class="avatar-group">
+                                <div class="avatar avatar-primary">
+                                    <span>SC</span>
+                                </div>
+                                <div class="avatar avatar-secondary">
+                                    <span>AI</span>
+                                </div>
+                            </div>
+                            <div class="chat-info">
+                                <strong>Sarah Chen</strong>
+                                <span>1 FEB // www.nexora.com</span>
+                            </div>
+                        </div>
+                        <div class="chat-bubble">
+                            <p>Hola, ¿cómo puedo ayudarte con la gestión de tu negocio?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Solutions Section -->
+        <section class="solutions-section" id="soluciones">
+            <div class="solutions-background"></div>
+            <div class="solutions-content">
+                <h2 class="animate-on-scroll">SOLUCIONES CLAVE</h2>
+                <h3 class="animate-on-scroll delay-1">NEXORA AI PLATFORM</h3>
+                <p class="subtitle animate-on-scroll delay-2">Lista para llevar tu negocio al siguiente nivel</p>
+                <a href="https://www.nexora.com" class="main-link animate-on-scroll delay-3" target="_blank" rel="noopener noreferrer">
+                    https://www.nexora.com
+                </a>
+                
+                <div class="solutions-grid animate-on-scroll delay-4">
+                    <div class="solution-card">
+                        <h4>1. Shopify Editions</h4>
+                        <a href="https://www.shopify.com/editions" target="_blank" rel="noopener noreferrer">
+                            https://www.shopify.com/editions
+                        </a>
+                    </div>
+                    <div class="solution-card delay-1">
+                        <h4>2. Maopify Editions AI</h4>
+                        <a href="https://www.shopify.com/" target="_blank" rel="noopener noreferrer">
+                            https://www.shopify.com/
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section" id="contacto">
+            <div class="contact-content">
+                <h2 class="animate-on-scroll">Ponte en Contacto</h2>
+                <p class="subtitle animate-on-scroll delay-1">¿Listo para llevar tu negocio al siguiente nivel? Déjanos un mensaje.</p>
+                
+                <form class="contact-form animate-on-scroll delay-2" id="contact-form" action="#" method="POST" novalidate>
+                    <div class="form-group">
+                        <input 
+                            type="text" 
+                            id="name" 
+                            name="name" 
+                            required 
+                            placeholder=" "
+                            autocomplete="name"
+                            aria-label="Tu Nombre"
+                        >
+                        <label for="name">Tu Nombre</label>
+                        <span class="form-error" id="name-error" role="alert"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            required 
+                            placeholder=" "
+                            autocomplete="email"
+                            aria-label="Tu Correo Electrónico"
+                        >
+                        <label for="email">Tu Correo Electrónico</label>
+                        <span class="form-error" id="email-error" role="alert"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <textarea 
+                            id="message" 
+                            name="message" 
+                            rows="5" 
+                            required 
+                            placeholder=" "
+                            aria-label="Tu Mensaje"
+                        ></textarea>
+                        <label for="message">Tu Mensaje</label>
+                        <span class="form-error" id="message-error" role="alert"></span>
+                    </div>
+                    
+                    <button type="submit" class="submit-button" id="submit-button">
+                        <span class="button-text">Enviar Mensaje</span>
+                        <span class="button-loader" aria-hidden="true">
+                            <i class="fas fa-spinner fa-spin"></i>
+                        </span>
+                    </button>
+                    
+                    <div class="form-success" id="form-success" role="alert">
+                        <i class="fas fa-check-circle"></i>
+                        <span>¡Mensaje enviado exitosamente! Te contactaremos pronto.</span>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer" role="contentinfo">
+        <div class="footer-content">
+            <p>&copy; 2024 Nexora AI Platform. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
+

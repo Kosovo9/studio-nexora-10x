@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0d102a;
+  --foreground: #ffffff;
 }
 
 @theme inline {
@@ -12,24 +12,39 @@
   --font-mono: var(--font-geist-mono);
   
   /* Nexora Color Palette */
-  --color-nexora-deepBlue: #0A174E;
-  --color-nexora-midBlue: #1D2671;
-  --color-nexora-darkBlue: #003153;
-  --color-nexora-gold: #D4AF37;
-  --color-nexora-lightGold: #F7EF8A;
+  --color-nexora-deepBlue: #0d102a;
+  --color-nexora-midBlue: #1a1f4c;
+  --color-nexora-darkBlue: #2c327c;
+  --color-nexora-gold: #f0b90b;
+  --color-nexora-lightGold: #ffd700;
+  --color-nexora-primary: #3a4a9f;
+  --color-nexora-primary-hover: #4a5ac7;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0d102a;
+    --foreground: #ffffff;
   }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 /* Custom utility classes */
@@ -38,4 +53,22 @@ body {
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
   }
+  
+  .bg-gradient-radial {
+    background-image: radial-gradient(circle, var(--tw-gradient-stops));
+  }
+}
+
+/* Smooth scroll for anchor links */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Focus visible styles for accessibility */
+*:focus-visible {
+  outline: 2px solid #f0b90b;
+  outline-offset: 2px;
+  border-radius: 4px;
 }
