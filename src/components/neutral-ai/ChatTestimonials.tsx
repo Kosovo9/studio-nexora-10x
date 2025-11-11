@@ -40,11 +40,15 @@ export default function ChatTestimonials() {
               className={`flex ${msg.isAI ? 'justify-start' : 'justify-end'}`}
             >
               <div 
-                className={`max-w-[80%] rounded-2xl p-4 ${
+                className={`max-w-[80%] rounded-2xl p-4 text-white ${
                   msg.isAI 
-                    ? 'bg-nexora-gold/20 text-white border border-nexora-gold/30' 
-                    : 'bg-white/10 text-white border border-white/20'
+                    ? 'border' 
+                    : 'bg-white/10 border border-white/20'
                 }`}
+                style={msg.isAI ? {
+                  backgroundColor: 'rgba(212, 175, 55, 0.2)',
+                  borderColor: 'rgba(212, 175, 55, 0.3)'
+                } : {}}
               >
                 <p className="text-sm md:text-base leading-relaxed">{msg.message}</p>
               </div>

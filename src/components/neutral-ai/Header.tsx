@@ -11,15 +11,15 @@ export default function Header() {
       <nav className="flex justify-between items-center p-6 max-w-7xl mx-auto">
         {/* Logo */}
         <div className="flex items-center space-x-2">
-          <div className="w-8 h-8 bg-nexora-gold rounded-lg flex items-center justify-center">
-            <span className="text-nexora-deepBlue font-bold text-sm">N</span>
+          <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#D4AF37' }}>
+            <span className="font-bold text-sm" style={{ color: '#0A174E' }}>N</span>
           </div>
           <span className="text-2xl font-bold text-white">Neutral AI</span>
         </div>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-8">
-          <button className="bg-nexora-gold text-nexora-deepBlue px-6 py-2 rounded-full font-semibold hover:bg-nexora-lightGold transition-colors duration-300 shadow-md hover:shadow-lg">
+          <button className="px-6 py-2 rounded-full font-semibold transition-colors duration-300 shadow-md hover:shadow-lg" style={{ backgroundColor: '#D4AF37', color: '#0A174E' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#F7EF8A'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#D4AF37'}>
             Programar Demo
           </button>
           <button 

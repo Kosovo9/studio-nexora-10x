@@ -37,9 +37,20 @@ export default function SolutionsSection() {
             href={solution.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="group bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10 hover:border-nexora-gold/50 transition-all duration-300 hover:transform hover:scale-105 shadow-lg hover:shadow-xl"
+            className="group bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10 transition-all duration-300 hover:transform hover:scale-105 shadow-lg hover:shadow-xl"
+            style={{ borderColor: 'rgba(255, 255, 255, 0.1)' }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.5)'
+              const h3 = e.currentTarget.querySelector('h3')
+              if (h3) h3.style.color = '#D4AF37'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)'
+              const h3 = e.currentTarget.querySelector('h3')
+              if (h3) h3.style.color = 'white'
+            }}
           >
-            <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-nexora-gold transition-colors">
+            <h3 className="text-xl font-semibold text-white mb-2 transition-colors">
               {solution.title}
             </h3>
             <p className="text-gray-400 text-sm">

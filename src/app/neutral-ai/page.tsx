@@ -1,3 +1,5 @@
+'use client'
+
 import Header from '@/components/neutral-ai/Header'
 import HeroStats from '@/components/neutral-ai/HeroStats'
 import ChatTestimonials from '@/components/neutral-ai/ChatTestimonials'
@@ -20,7 +22,12 @@ export default function NeutralAIPage() {
         
         {/* Contact Button */}
         <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
-          <button className="bg-nexora-gold text-nexora-deepBlue px-8 py-4 rounded-full font-semibold hover:bg-nexora-lightGold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
+          <button 
+            className="px-8 py-4 rounded-full font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+            style={{ backgroundColor: '#D4AF37', color: '#0A174E' }}
+            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#F7EF8A'}
+            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#D4AF37'}
+          >
             CONTACTO
           </button>
         </div>

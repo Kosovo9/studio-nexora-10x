@@ -23,9 +23,12 @@ export default function HeroStats() {
         {stats.map((stat, index) => (
           <div 
             key={index}
-            className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 hover:border-nexora-gold/50 transition-all duration-300 hover:scale-105"
+            className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 transition-all duration-300 hover:scale-105"
+            style={{ borderColor: 'rgba(255, 255, 255, 0.2)' }}
+            onMouseEnter={(e) => e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.5)'}
+            onMouseLeave={(e) => e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)'}
           >
-            <div className="text-4xl md:text-5xl font-bold text-nexora-gold mb-2">
+            <div className="text-4xl md:text-5xl font-bold mb-2" style={{ color: '#D4AF37' }}>
               {stat.value}
             </div>
             <div className="text-lg text-gray-300">
