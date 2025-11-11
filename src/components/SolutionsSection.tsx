@@ -24,11 +24,12 @@ export default function SolutionsSection() {
         </h2>
         
         <h3 
-          className={`text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-3 transition-all duration-700 delay-200 ${
+          className={`text-3xl sm:text-4xl md:text-5xl font-extrabold mb-3 transition-all duration-700 delay-200 ${
             inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          NEXORA AI PLATFORM
+          <span className="text-white">NEXORA AI</span>{' '}
+          <span className="text-[#f0b90b]">PLATFORM</span>
         </h3>
         
         <p 
@@ -57,12 +58,12 @@ export default function SolutionsSection() {
           }`}
         >
           <div className="bg-[#3a4a9f]/50 backdrop-blur-md border border-[#f0b90b] rounded-2xl p-8 hover:scale-105 hover:border-[#ffd700] hover:shadow-xl transition-all duration-300">
-            <h4 className="text-xl font-bold text-[#f0b90b] mb-3">1. Shopify Editions</h4>
+            <h4 className="text-xl font-bold text-white mb-3">1. Shopify Editions</h4>
             <a 
               href="https://www.shopify.com/editions" 
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transition-colors text-sm break-all"
+              className="text-white hover:text-[#f0b90b] transition-colors text-sm break-all"
             >
               https://www.shopify.com/editions
             </a>
@@ -73,12 +74,12 @@ export default function SolutionsSection() {
               inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            <h4 className="text-xl font-bold text-[#f0b90b] mb-3">2. Maopify Editions AI</h4>
+            <h4 className="text-xl font-bold text-white mb-3">2. Maopify Editions AI</h4>
             <a 
               href="https://www.shopify.com/" 
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transition-colors text-sm break-all"
+              className="text-white hover:text-[#f0b90b] transition-colors text-sm break-all"
             >
               https://www.shopify.com/
             </a>

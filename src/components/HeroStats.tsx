@@ -18,10 +18,8 @@ export default function HeroStats() {
         }`}
       >
         {/* Main Title */}
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white mb-6 leading-tight">
-          <span className="bg-gradient-to-r from-white via-white to-[#f0b90b] bg-clip-text text-transparent">
-            NEXORA AI
-          </span>
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight">
+          <span className="text-white">NEXORA AI</span>
           <br />
           <span className="text-[#f0b90b]">PLATFORM</span>
         </h1>
@@ -69,8 +67,8 @@ export default function HeroStats() {
                   <div className="text-gray-400 text-xs">1 FEB // www.nexora.com</div>
                 </div>
               </div>
-              <div className="w-10 h-10 bg-[#4a5ac7] rounded-full flex items-center justify-center">
-                <span className="text-white text-xs font-bold">AI</span>
+              <div className="w-10 h-10 bg-gray-600 rounded-full flex items-center justify-center">
+                <span className="text-white text-xs font-bold">M</span>
               </div>
             </div>
             

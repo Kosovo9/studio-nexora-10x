@@ -23,7 +23,6 @@ export default function Home() {
       <Header />
       <HeroStats />
       <SolutionsSection />
-      <ContactForm />
     </main>
   )
 }
